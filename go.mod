@@ -2,6 +2,7 @@ module github.com/shawnfeng/roc
 
 require (
 	git.apache.org/thrift.git v0.0.0-20150427210205-dc799ca07862
+	github.com/ZhengHe-MD/go-stdlib v0.0.0-20190820074432-aac302bfcf17 // indirect
 	github.com/afex/hystrix-go v0.0.0-20180502004556-fa1af6a1f4f5 // indirect
 	github.com/coreos/etcd v3.0.0-beta.0.0.20160712024141-cc26f2c8892e+incompatible
 	// nn
@@ -25,9 +26,8 @@ require (
 	github.com/smartystreets/goconvey v0.0.0-20181108003508-044398e4856c // indirect
 	// 这个库，老的依赖拷贝没有.git目录，不知道对应哪个版本，这个就用最新的吧
 	// 官方的库应该问题不大
-  
+
 	golang.org/x/net v0.0.0-20190522155817-f3200d17e092
 	google.golang.org/grpc v1.20.0
-
 
 )
