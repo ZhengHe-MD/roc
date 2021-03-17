@@ -301,11 +301,11 @@ func (m *ClientGrpc) newConn(addr string) (rpcClientConn, error) {
 	opts := []grpc.DialOption{
 		grpc.WithInsecure(),
 		grpc.WithUnaryInterceptor(
-			otgrpc.OpenTracingClientInterceptorWithGlobalTracer(otgrpc.SpanDecorator(apmSetSpanTagDecorator))),
+			otgrpc.OpenTracingClientInterceptor(otgrpc.SpanDecorator(apmSetSpanTagDecorator))),
 		grpc.WithUnaryInterceptor(
 			LaneInfoUnaryClientInterceptor()),
 		grpc.WithStreamInterceptor(
-			otgrpc.OpenTracingStreamClientInterceptorWithGlobalTracer()),
+			otgrpc.OpenTracingStreamClientInterceptor()),
 	}
 	conn, err := grpc.Dial(addr, opts...)
 	if err != nil {
