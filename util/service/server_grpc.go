@@ -130,7 +130,7 @@ func (g *GrpcServer) buildServer() (*grpc.Server, error) {
 	}
 	unaryInterceptors = append(unaryInterceptors,
 		grpc_recovery.UnaryServerInterceptor(recoveryOpts...),
-		otgrpc.OpenTracingServerInterceptor(opentracing.GlobalTracer(), otgrpc.SpanDecorator(apmSetSpanTagDecorator)),
+		otgrpc.OpenTracingServerInterceptorWithGlobalTracer(otgrpc.SpanDecorator(apmSetSpanTagDecorator)),
 		rateLimitInterceptor(),
 		monitorServerInterceptor(),
 		laneInfoServerInterceptor(),
@@ -141,7 +141,7 @@ func (g *GrpcServer) buildServer() (*grpc.Server, error) {
 
 	streamInterceptors = append(streamInterceptors,
 		rateLimitStreamServerInterceptor(),
-		otgrpc.OpenTracingStreamServerInterceptor(opentracing.GlobalTracer()),
+		otgrpc.OpenTracingStreamServerInterceptorWithGlobalTracer(),
 		monitorStreamServerInterceptor(),
 		grpc_recovery.StreamServerInterceptor(recoveryOpts...))
 
