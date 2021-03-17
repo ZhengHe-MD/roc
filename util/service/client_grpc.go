@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/opentracing/opentracing-go"
 	"time"
 
 	"gitlab.pri.ibanyu.com/middleware/seaweed/xcontext"
@@ -301,11 +302,11 @@ func (m *ClientGrpc) newConn(addr string) (rpcClientConn, error) {
 	opts := []grpc.DialOption{
 		grpc.WithInsecure(),
 		grpc.WithUnaryInterceptor(
-			otgrpc.OpenTracingClientInterceptor(otgrpc.SpanDecorator(apmSetSpanTagDecorator))),
+			otgrpc.OpenTracingClientInterceptor(opentracing.GlobalTracer(), otgrpc.SpanDecorator(apmSetSpanTagDecorator))),
 		grpc.WithUnaryInterceptor(
 			LaneInfoUnaryClientInterceptor()),
 		grpc.WithStreamInterceptor(
-			otgrpc.OpenTracingStreamClientInterceptor()),
+			otgrpc.OpenTracingStreamClientInterceptor(opentracing.GlobalTracer())),
 	}
 	conn, err := grpc.Dial(addr, opts...)
 	if err != nil {
