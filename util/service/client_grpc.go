@@ -300,11 +300,11 @@ func (m *ClientGrpc) newConn(addr string) (rpcClientConn, error) {
 	// 可加入多种拦截器
 	opts := []grpc.DialOption{
 		grpc.WithInsecure(),
-		grpc.WithUnaryInterceptor(
+		grpc.WithChainUnaryInterceptor(
 			otgrpc.OpenTracingClientInterceptorWithGlobalTracer(otgrpc.SpanDecorator(apmSetSpanTagDecorator))),
-		grpc.WithUnaryInterceptor(
+		grpc.WithChainUnaryInterceptor(
 			LaneInfoUnaryClientInterceptor()),
-		grpc.WithStreamInterceptor(
+		grpc.WithChainStreamInterceptor(
 			otgrpc.OpenTracingStreamClientInterceptorWithGlobalTracer()),
 	}
 	conn, err := grpc.Dial(addr, opts...)
