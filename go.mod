@@ -16,7 +16,7 @@ require (
 	gitlab.pri.ibanyu.com/middleware/seaweed v1.2.49
 	gitlab.pri.ibanyu.com/middleware/util v1.3.93
 	gitlab.pri.ibanyu.com/server/servmonitor/pub.git v0.0.0-20201126101549-2540f6a10b42
-	gitlab.pri.ibanyu.com/tracing/go-grpc v0.0.0-20210317125043-dc11261424b3
+	gitlab.pri.ibanyu.com/tracing/go-grpc v0.0.0-20210317130820-7fb63615f4fa
 	gitlab.pri.ibanyu.com/tracing/go-stdlib v1.0.1-0.20201126030004-a3785d4be9ed
 	google.golang.org/grpc v1.24.0
 )
